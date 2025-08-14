@@ -1,1 +1,2 @@
-print("hello, world")
+name = input("What is your name? ").strip().title()
+print(f"hello, {name}")
