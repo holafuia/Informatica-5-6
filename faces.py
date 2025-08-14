@@ -1,4 +1,5 @@
-thing = input("make a face 🙂 or ☹️ : ").strip()
+thing = input("make a face 🙂 or ☹️ : ").strip().title()
 thing = thing.replace(":)","🙂")
 thing = thing.replace(":(","☹️")
+thing = thing.replace(":", "Victor🗣️ 🗣️ 🗣️")
 print(thing)
