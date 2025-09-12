@@ -5,18 +5,28 @@ def main():
     list = []
     while True:
         num = input("type a number for the list, 0 to exit: ")
-        while not number(num):
-            num = input("type a number for the list, 0 to exit: ")
+        if number(num):
+            num = int(num)
+            if num == 0:
+                break
+            show(num, list)
+            
+        else:
+            if ("-" in num) == True:
+                num = num.replace("-", "")
+                if number(num):
+                    num = int(num)
+                    num = num * -1
+                    show(num, list)
+                
 
-        num = int(num)
-        if num == 0:
-            break
-        list.append(num)
-        print(list)
-        print(sorted(list))
-        length(list)
-        mean(list)
-        range_of_list(list)
+def show(num, list):
+    list.append(num)
+    print(list)
+    print(sorted(list))
+    length(list)
+    mean(list)
+    range_of_list(list)
 
 def length(x):
     print(f"the length is: {len(x)}")
