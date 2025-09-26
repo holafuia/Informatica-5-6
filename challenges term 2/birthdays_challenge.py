@@ -20,7 +20,7 @@ def main():
         if name in birthdays:
             print(f"{name}'s birthday is in {birthdays[name]}")
 
-    file = open("birthdays.txt", "w")
+    file = open("birthdays_challenge.txt", "w")
     for x in birthdays:
         file.write(f"{x}: {birthdays[x]}\n")
     
