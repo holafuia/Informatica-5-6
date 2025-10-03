@@ -22,7 +22,6 @@ def dictionary(message, count):
         value = count[a]
         if int(value) == values:
             maxs += a
-
     print(f"The letter(s) with most appearence are {maxs} with {values} letters each")
 
 main()
