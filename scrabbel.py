@@ -33,17 +33,23 @@ while True:
     wrong_characters = []
 
 
-    valid = False
+    valid = True
     for i in word:
         if i in list_letters:
             list_letters.remove(i)
         else:
             wrong_characters.append(i)
-            valid == True
-
-    if valid:
-        print(f"Invalid input you do not have: {wrong_characters}")
+            valid == False
 
     if not valid:
-        print(score(word))
+        print(f"Invalid input you do not have: {wrong_characters}")
+
+    with open("words.txt", "r") as file:
+        words = {word.lower() for word in file.read().splitlines()}
+
+    if word.lower() not in words:
+        print("Not a valid word")
         continue
+
+    if word.lower() in words:
+        print(f"your score is {score(word)}")
