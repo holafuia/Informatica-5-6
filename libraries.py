@@ -19,6 +19,6 @@ import cowsay
 # print("Hello, my name is", sys.argv[1])
 
 try:
-    cowsay.cow(sys.argv[1])
+    cowsay.trex(sys.argv[1])
 except IndexError:
     sys.exit()
