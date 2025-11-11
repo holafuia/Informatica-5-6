@@ -3,7 +3,7 @@ import json
 
 def main():
     universities = {
-        "bYU_PATHWAY": {
+        "BYU_PATHWAY": {
             "majors": 30,
             "semester_cost": 3000,
             "closest_campus": "online, 0 km"
@@ -32,15 +32,21 @@ def main():
     uni(universities)
 
 def uni(universities):
-    for y in universities:
-        y.replace("_", " ")
     while True:
         try:
-            x = input("please type in the university you are looking for: ").capitalize()
-            if x in universities:
-                print(universities[x])
+            university = input("please type in the university you are looking for: ").upper()
+            university = university.replace(" ", "_")
+            for individual in universities:
+                if university == individual:
+                    for single_unit in universities[university]:
+                        print(f"{single_unit}: {universities[university].get(single_unit)}")
+                    break
+            other_choises = requests.get("https://raw.githubusercontent.com/Hipo/university-domains-list/refs/heads/master/world_universities_and_domains.json&term="+university)
+            for one in other_choises:
+                if one.get("name") == university:
+                    print(f"{one["web_pages"]} \n {one["country"]} \n {one["state-province"]}")
+                    break
         except ValueError:
             print("invalid university")
-            continue
 
 main()
