@@ -32,21 +32,22 @@ def main():
     uni(universities)
 
 def uni(universities):
-    while True:
+    i = True
+    while i:
         try:
-            university = input("please type in the university you are looking for: ").upper()
-            university = university.replace(" ", "_")
+            university = input("please type in the university you are looking for: ").upper().replace(" ", "_")
             for individual in universities:
                 if university == individual:
                     for single_unit in universities[university]:
                         print(f"{single_unit}: {universities[university].get(single_unit)}")
-                    break
-            other_choises = requests.get("https://raw.githubusercontent.com/Hipo/university-domains-list/refs/heads/master/world_universities_and_domains.json&term="+university)
+                    exit()
+            other_choises = requests.get("https://raw.githubusercontent.com/Hipo/university-domains-list/refs/heads/master/world_universities_and_domains.json").json()
             for one in other_choises:
-                if one.get("name") == university:
-                    print(f"{one["web_pages"]} \n {one["country"]} \n {one["state-province"]}")
-                    break
-        except ValueError:
-            print("invalid university")
+                if one.get("name").upper().replace(" ", "_") == university:
+                    print(f"web pages: {one["web_pages"]} \n country: {one["country"]} \n state province: {one["state-province"]}")
+                    exit()
+            raise ValueError
+        except not exit():
+            print("invalid")
 
 main()
