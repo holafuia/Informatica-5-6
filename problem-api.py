@@ -4,9 +4,10 @@ import json
 #url=https%3A%2F%2Fdocs.python.org%2F3%2Flibrary%2Ffunctions.html
 
 def main():
-    info = input("Type the python function you wnat to know: ")
-    api_key = "sb_e9a4fe336b9bc7c02b78ffb59101e6c7e7e8c42bd70de987e30b6feb85babb36"
-    api = requests.get(f"https://scrapingbot.io/api/v1/scrape?api_key={api_key}&url=https://docs.python.org/3/library/functions.html&render_js=true&block_resources=true").json()
+    info = input("Type the continent you want to see the hour: ")
+    info2 = input("Type the state you want to see the hour: ")
+    api_key = "yBkWF/PU1+iJLkRRJ8BJGw==0es4ug9tt26N273e"
+    api = requests.get(f"https://api.api-ninjas.com/v1/timezone?timezone={info}", headers={"X-Api-Key": api_key}).json()
     print(api)
 
 main()
