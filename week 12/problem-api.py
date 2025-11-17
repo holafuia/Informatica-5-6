@@ -1,13 +1,30 @@
 import requests
 import json
-#&window_width=1920&window_height=1080&timeout=45000
-#url=https%3A%2F%2Fdocs.python.org%2F3%2Flibrary%2Ffunctions.html
 
 def main():
-    info = input("Type the continent you want to see the hour: ")
-    info2 = input("Type the state you want to see the hour: ")
-    api_key = "yBkWF/PU1+iJLkRRJ8BJGw==0es4ug9tt26N273e"
-    api = requests.get(f"https://api.api-ninjas.com/v1/timezone?timezone={info}", headers={"X-Api-Key": api_key}).json()
-    print(api)
+    api_key = "12MTRNXM5HQ6"
+    while True:
+        try:
+            timezone = input("Type 1 to see the timezones list, type 2 to type the desired timezone: ")
+            if timezone == "2":
+                info = input("Type the timezone you want to see the hour: ")
+                api = requests.get(f"http://api.timezonedb.com/v2.1/get-time-zone?key={api_key}&format=json&by=zone&zone={info}").json()
+                if info == api["zoneName"]:
+                    print(f"the time is: {api["formatted"][11:19]}")
+                    break
+                else:
+                    print("Invalid timezone")
+            elif timezone == "1":
+                print("Asia, America, Africa, Pacific, Europe, Antarctica, Australia, Atlantic, Indian, Arctic")
+                continent = input("type the desired continent: ")
+                api2 = requests.get(f"http://api.timezonedb.com/v2.1/list-time-zone?key={api_key}&format=json&zoneName=*{continent}*").json()
+                for all_zones in api2["zones"]:
+                    zone = all_zones["zoneName"][:len(continent)]
+                    if zone == continent:
+                        print(all_zones["zoneName"])
+            else:
+                print("Invalid")
+        except:
+            print("An Unexpected Error Happened")
 
 main()
