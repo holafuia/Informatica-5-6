@@ -10,7 +10,7 @@ def main():
                 info = input("Type the timezone you want to see the hour: ")
                 api = requests.get(f"http://api.timezonedb.com/v2.1/get-time-zone?key={api_key}&format=json&by=zone&zone={info}").json()
                 if info == api["zoneName"]:
-                    print(f"the time is: {api["formatted"][11:19]}")
+                    print(f"the timezone of {info} is: {api["formatted"][11:19]}")
                     break
                 else:
                     print("Invalid timezone")
