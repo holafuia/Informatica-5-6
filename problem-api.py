@@ -16,7 +16,10 @@ def main():
                     print("Invalid timezone")
             elif timezone == "1":
                 print("Asia, America, Africa, Pacific, Europe, Antarctica, Australia, Atlantic, Indian, Arctic")
+                con =("Asia", "America", "Africa", "Pacific", "Europe", "Antarctica", "Australia", "Atlantic", "Indian", "Arctic")
                 continent = input("type the desired continent: ")
+                if continent not in con:
+                    raise ValueError
                 api2 = requests.get(f"http://api.timezonedb.com/v2.1/list-time-zone?key={api_key}&format=json&zoneName=*{continent}*").json()
                 for all_zones in api2["zones"]:
                     zone = all_zones["zoneName"][:len(continent)]
